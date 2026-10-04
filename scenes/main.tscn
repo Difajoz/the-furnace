@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://diq5csks011ke"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/arena/arena.gd" id="2_arena"]
+[ext_resource type="Script" path="res://scripts/furnace/furnace.gd" id="3_furnace"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="4_player"]
+[ext_resource type="Script" path="res://scripts/enemies/zombie_spawner.gd" id="5_spawner"]
+[ext_resource type="Script" path="res://scripts/camera/game_camera.gd" id="6_camera"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="7_hud_scene"]
+[ext_resource type="PackedScene" path="res://scenes/ui/shop_ui.tscn" id="8_shop_scene"]
+[ext_resource type="PackedScene" path="res://scenes/ui/game_over_ui.tscn" id="9_gameover_scene"]
+[ext_resource type="PackedScene" path="res://scenes/ui/main_menu_ui.tscn" id="10_menu_scene"]
+[ext_resource type="PackedScene" path="res://scenes/ui/pause_ui.tscn" id="11_pause_scene"]
+[ext_resource type="PackedScene" path="res://scenes/ui/level_up_ui.tscn" id="12_levelup_scene"]
+[ext_resource type="PackedScene" path="res://scenes/ui/loading_screen_ui.tscn" id="14_loading_scene"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_furnace"]
+radius = 80.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_player"]
+radius = 16.0
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="Arena" type="Node2D" parent="."]
+script = ExtResource("2_arena")
+
+[node name="Furnace" type="CharacterBody2D" parent="."]
+collision_mask = 2
+script = ExtResource("3_furnace")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Furnace"]
+shape = SubResource("CircleShape2D_furnace")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(0, 140)
+collision_mask = 3
+script = ExtResource("4_player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_player")
+
+[node name="ZombieSpawner" type="Node2D" parent="."]
+script = ExtResource("5_spawner")
+
+[node name="GameCamera" type="Camera2D" parent="."]
+script = ExtResource("6_camera")
+
+[node name="HUD" parent="." instance=ExtResource("7_hud_scene")]
+
+[node name="ShopUI" parent="." instance=ExtResource("8_shop_scene")]
+
+[node name="GameOverUI" parent="." instance=ExtResource("9_gameover_scene")]
+
+[node name="MainMenuUI" parent="." instance=ExtResource("10_menu_scene")]
+
+[node name="PauseUI" parent="." instance=ExtResource("11_pause_scene")]
+
+[node name="LevelUpUI" parent="." instance=ExtResource("12_levelup_scene")]
+
+[node name="LoadingScreenUI" parent="." instance=ExtResource("14_loading_scene")]

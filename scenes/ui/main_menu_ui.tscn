@@ -1,0 +1,247 @@
+[gd_scene format=3 uid="uid://rtg16nortnjp"]
+
+[ext_resource type="Script" path="res://scripts/ui/main_menu_ui.gd" id="1_menu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.08, 0.09, 0.12, 0.98)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.95, 0.72, 0.1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_diff_panel"]
+bg_color = Color(0.05, 0.06, 0.09, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.4, 0.5, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="MainMenuUI" type="CanvasLayer" unique_id=619520314]
+process_mode = 3
+layer = 110
+script = ExtResource("1_menu")
+
+[node name="Root" type="Control" parent="." unique_id=352631285]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="Root" unique_id=730252361]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.04, 0.06, 0.98)
+
+[node name="Center" type="CenterContainer" parent="Root" unique_id=623447202]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="Root/Center" unique_id=1200019457]
+custom_minimum_size = Vector2(980, 750)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Margin" type="MarginContainer" parent="Root/Center/Panel" unique_id=623746256]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="Root/Center/Panel/Margin" unique_id=693570624]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Title" type="Label" parent="Root/Center/Panel/Margin/VBox" unique_id=514133809]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.55, 0.12, 1)
+theme_override_font_sizes/font_size = 48
+text = "[ THE FURNACE ]"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Root/Center/Panel/Margin/VBox" unique_id=1643944805]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.82, 0.85, 0.9, 1)
+theme_override_font_sizes/font_size = 24
+text = "SURVIVE THE CRYPT HORDE  |  COOL THE CRUCIBLE"
+horizontal_alignment = 1
+
+[node name="RecordLabel" type="Label" parent="Root/Center/Panel/Margin/VBox" unique_id=1643944806]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.82, 0.25, 1)
+theme_override_font_sizes/font_size = 20
+text = "BEST WAVE: 1  |  BEST COMBO: 0  |  MAX KILLS: 0  |  MAX GOLD: 40"
+horizontal_alignment = 1
+
+[node name="MainSection" type="VBoxContainer" parent="Root/Center/Panel/Margin/VBox" unique_id=171978201]
+layout_mode = 2
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="ContinueButton" type="Button" parent="Root/Center/Panel/Margin/VBox/MainSection" unique_id=171978187]
+visible = false
+custom_minimum_size = Vector2(760, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "CONTINUE RUN (WAVE 1)"
+
+[node name="StartButton" type="Button" parent="Root/Center/Panel/Margin/VBox/MainSection" unique_id=171978188]
+custom_minimum_size = Vector2(760, 62)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "START NEW RUN"
+
+[node name="TutorialButton" type="Button" parent="Root/Center/Panel/Margin/VBox/MainSection" unique_id=171978195]
+custom_minimum_size = Vector2(760, 54)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "[ HOW TO PLAY / TRAINING ACADEMY ]"
+
+[node name="QuitButton" type="Button" parent="Root/Center/Panel/Margin/VBox/MainSection" unique_id=171978199]
+custom_minimum_size = Vector2(760, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "QUIT TO DESKTOP"
+
+[node name="AudioHBox" type="HBoxContainer" parent="Root/Center/Panel/Margin/VBox/MainSection" unique_id=171978189]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="SfxButton" type="Button" parent="Root/Center/Panel/Margin/VBox/MainSection/AudioHBox" unique_id=171978190]
+custom_minimum_size = Vector2(210, 44)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "SFX: 100%"
+
+[node name="MusicButton" type="Button" parent="Root/Center/Panel/Margin/VBox/MainSection/AudioHBox" unique_id=171978191]
+custom_minimum_size = Vector2(210, 44)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "MUSIC: 100%"
+
+[node name="FullscreenButton" type="Button" parent="Root/Center/Panel/Margin/VBox/MainSection/AudioHBox" unique_id=171978192]
+custom_minimum_size = Vector2(240, 44)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "SCREEN: WINDOW"
+
+[node name="ControlsHint" type="Label" parent="Root/Center/Panel/Margin/VBox/MainSection" unique_id=1298624091]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.67, 0.7, 0.76, 1)
+theme_override_font_sizes/font_size = 19
+text = "WASD: Move  |  Space: Dash  |  T: Turrets  |  1,2,3: Skills  |  LMB: Cool (Water)  |  RMB: Lock-On  |  Q: Unlock  |  E: Feed Crucible  |  F11: Fullscreen"
+horizontal_alignment = 1
+
+[node name="DifficultySection" type="VBoxContainer" parent="Root/Center/Panel/Margin/VBox" unique_id=171978202]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="DiffHeaderLabel" type="Label" parent="Root/Center/Panel/Margin/VBox/DifficultySection" unique_id=1643944807]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.25, 1)
+theme_override_font_sizes/font_size = 28
+text = "[ CHOOSE RUN DIFFICULTY ]"
+horizontal_alignment = 1
+
+[node name="DiffSubLabel" type="Label" parent="Root/Center/Panel/Margin/VBox/DifficultySection" unique_id=1643944808]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.84, 0.9, 1)
+theme_override_font_sizes/font_size = 18
+text = "Select your challenge level. Locked for the duration of the run:"
+horizontal_alignment = 1
+
+[node name="DiffHBox" type="HBoxContainer" parent="Root/Center/Panel/Margin/VBox/DifficultySection" unique_id=171978180]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="EasyButton" type="Button" parent="Root/Center/Panel/Margin/VBox/DifficultySection/DiffHBox" unique_id=171978181]
+custom_minimum_size = Vector2(230, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "[ EASY ]"
+
+[node name="NormalButton" type="Button" parent="Root/Center/Panel/Margin/VBox/DifficultySection/DiffHBox" unique_id=171978182]
+custom_minimum_size = Vector2(230, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "[ NORMAL ]"
+
+[node name="HardButton" type="Button" parent="Root/Center/Panel/Margin/VBox/DifficultySection/DiffHBox" unique_id=171978183]
+custom_minimum_size = Vector2(230, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "[ HARD ]"
+
+[node name="DiffDescPanel" type="PanelContainer" parent="Root/Center/Panel/Margin/VBox/DifficultySection" unique_id=171978184]
+custom_minimum_size = Vector2(760, 110)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_diff_panel")
+
+[node name="Margin" type="MarginContainer" parent="Root/Center/Panel/Margin/VBox/DifficultySection/DiffDescPanel" unique_id=171978185]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="Root/Center/Panel/Margin/VBox/DifficultySection/DiffDescPanel/Margin" unique_id=171978186]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="DiffTitleLabel" type="Label" parent="Root/Center/Panel/Margin/VBox/DifficultySection/DiffDescPanel/Margin/VBox" unique_id=171978193]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+theme_override_font_sizes/font_size = 22
+text = "[ NORMAL - STANDARD FOUNDRY ]"
+horizontal_alignment = 1
+
+[node name="DiffDescLabel" type="Label" parent="Root/Center/Panel/Margin/VBox/DifficultySection/DiffDescPanel/Margin/VBox" unique_id=171978194]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.88, 0.94, 1)
+theme_override_font_sizes/font_size = 18
+text = "The standard tactical foundry experience. Balanced horde spawns, escalating bosses, and strategic crucible management."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="DiffActionsVBox" type="VBoxContainer" parent="Root/Center/Panel/Margin/VBox/DifficultySection" unique_id=171978203]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="LaunchButton" type="Button" parent="Root/Center/Panel/Margin/VBox/DifficultySection/DiffActionsVBox" unique_id=171978204]
+custom_minimum_size = Vector2(760, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "LAUNCH RUN [NORMAL] (40 GOLD)"
+
+[node name="BackButton" type="Button" parent="Root/Center/Panel/Margin/VBox/DifficultySection/DiffActionsVBox" unique_id=171978205]
+custom_minimum_size = Vector2(760, 46)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "< BACK TO MAIN MENU"

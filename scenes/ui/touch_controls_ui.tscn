@@ -1,0 +1,181 @@
+[gd_scene format=3 uid="uid://crmi80n5y268g"]
+
+[ext_resource type="Script" uid="uid://rp7atyrbj0wp" path="res://scripts/ui/touch_controls_ui.gd" id="1_touch"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_joy_base"]
+bg_color = Color(0.08, 0.1, 0.15, 0.45)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.3, 0.7, 1, 0.55)
+corner_radius_top_left = 80
+corner_radius_top_right = 80
+corner_radius_bottom_right = 80
+corner_radius_bottom_left = 80
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_joy_knob"]
+bg_color = Color(0.2, 0.75, 1, 0.65)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.9)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[node name="TouchControlsUI" type="CanvasLayer"]
+process_mode = 3
+layer = 40
+script = ExtResource("1_touch")
+
+[node name="Root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LeftZone" type="Control" parent="Root"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -320.0
+offset_right = 360.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="JoystickBase" type="Panel" parent="Root/LeftZone"]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 0
+offset_left = 80.0
+offset_top = 80.0
+offset_right = 240.0
+offset_bottom = 240.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_joy_base")
+
+[node name="Knob" type="Panel" parent="Root/LeftZone/JoystickBase"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = 48.0
+offset_top = 48.0
+offset_right = 112.0
+offset_bottom = 112.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_joy_knob")
+
+[node name="RightZone" type="Control" parent="Root"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -380.0
+offset_top = -300.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="DashButton" type="Button" parent="Root/RightZone"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_left = 260.0
+offset_top = 180.0
+offset_right = 340.0
+offset_bottom = 260.0
+theme_override_font_sizes/font_size = 20
+text = "DASH"
+
+[node name="CoolButton" type="Button" parent="Root/RightZone"]
+custom_minimum_size = Vector2(74, 74)
+layout_mode = 0
+offset_left = 160.0
+offset_top = 190.0
+offset_right = 234.0
+offset_bottom = 264.0
+theme_override_font_sizes/font_size = 18
+text = "COOL"
+
+[node name="FeedButton" type="Button" parent="Root/RightZone"]
+custom_minimum_size = Vector2(68, 68)
+layout_mode = 0
+offset_left = 270.0
+offset_top = 90.0
+offset_right = 338.0
+offset_bottom = 158.0
+theme_override_font_sizes/font_size = 16
+text = "FEED"
+
+[node name="LockButton" type="Button" parent="Root/RightZone"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = 170.0
+offset_top = 100.0
+offset_right = 234.0
+offset_bottom = 164.0
+theme_override_font_sizes/font_size = 15
+text = "LOCK"
+
+[node name="SkillsZone" type="HBoxContainer" parent="Root"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -110.0
+offset_top = -80.0
+offset_right = 110.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Skill0" type="Button" parent="Root/SkillsZone"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "[1]"
+
+[node name="Skill1" type="Button" parent="Root/SkillsZone"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "[2]"
+
+[node name="Skill2" type="Button" parent="Root/SkillsZone"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "[3]"
+
+[node name="TopRightZone" type="Control" parent="Root"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 80.0
+grow_horizontal = 0
+mouse_filter = 2
+
+[node name="PauseButton" type="Button" parent="Root/TopRightZone"]
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 0
+offset_right = 54.0
+offset_bottom = 54.0
+theme_override_font_sizes/font_size = 24
+text = "||"

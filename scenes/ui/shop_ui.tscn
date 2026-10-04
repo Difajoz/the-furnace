@@ -1,0 +1,946 @@
+[gd_scene format=3 uid="uid://dj1u2v7v8xh8f"]
+
+[ext_resource type="Script" uid="uid://dmgx3e3lpof0a" path="res://scripts/ui/shop_ui.gd" id="1_shop"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.07, 0.08, 0.11, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.2, 0.22, 0.28, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(0.1, 0.12, 0.16, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5, 0.55, 0.65, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slot"]
+bg_color = Color(0.08, 0.09, 0.13, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.25, 0.3, 0.4, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="ShopUI" type="CanvasLayer" unique_id=1732776981]
+process_mode = 3
+layer = 100
+script = ExtResource("1_shop")
+
+[node name="Root" type="Control" parent="." unique_id=1565573408]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="Root" unique_id=163957051]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.06, 0.08, 0.96)
+
+[node name="Margin" type="MarginContainer" parent="Root" unique_id=768065795]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="ShopMainView" type="VBoxContainer" parent="Root/Margin" unique_id=1429648245]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TopBar" type="HBoxContainer" parent="Root/Margin/ShopMainView" unique_id=192119497]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="ShopTitle" type="Label" parent="Root/Margin/ShopMainView/TopBar" unique_id=253414393]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.8, 0.2, 1)
+theme_override_font_sizes/font_size = 44
+text = "[ THE FOUNDRY ARMORY & SHOP ]"
+
+[node name="GoldLabel" type="Label" parent="Root/Margin/ShopMainView/TopBar" unique_id=1959549074]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_font_sizes/font_size = 40
+text = "GOLD: 40"
+
+[node name="BonesLabel" type="Label" parent="Root/Margin/ShopMainView/TopBar" unique_id=68793712]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.93, 0.9, 1)
+theme_override_font_sizes/font_size = 40
+text = "BONES: 0 / 10"
+
+[node name="ContentHBox" type="HBoxContainer" parent="Root/Margin/ShopMainView" unique_id=726011242]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="StatsPanel" type="PanelContainer" parent="Root/Margin/ShopMainView/ContentHBox" unique_id=167174580]
+custom_minimum_size = Vector2(255, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="StatsMargin" type="MarginContainer" parent="Root/Margin/ShopMainView/ContentHBox/StatsPanel" unique_id=679632533]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="StatsVBox" type="VBoxContainer" parent="Root/Margin/ShopMainView/ContentHBox/StatsPanel/StatsMargin" unique_id=446769178]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="StatsTitle" type="Label" parent="Root/Margin/ShopMainView/ContentHBox/StatsPanel/StatsMargin/StatsVBox" unique_id=1134104610]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 38
+text = "[ SURVIVOR STATS ]"
+
+[node name="StatsLabel" type="RichTextLabel" parent="Root/Margin/ShopMainView/ContentHBox/StatsPanel/StatsMargin/StatsVBox" unique_id=225064943]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 25
+theme_override_font_sizes/bold_italics_font_size = 25
+theme_override_font_sizes/italics_font_size = 25
+theme_override_font_sizes/mono_font_size = 25
+bbcode_enabled = true
+
+[node name="CenterVBox" type="VBoxContainer" parent="Root/Margin/ShopMainView/ContentHBox" unique_id=19204012]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 14
+
+[node name="CardContainer" type="HBoxContainer" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox" unique_id=1912816609]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="Card0" type="PanelContainer" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer" unique_id=1766608034]
+custom_minimum_size = Vector2(212, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Margin" type="MarginContainer" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card0" unique_id=1477901852]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBox" type="VBoxContainer" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card0/Margin" unique_id=1950492331]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TierBadge" type="Label" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card0/Margin/VBox" unique_id=1554584297]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "[ COMMON ]"
+horizontal_alignment = 1
+
+[node name="IconRect" type="TextureRect" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card0/Margin/VBox" unique_id=1781845963]
+texture_filter = 1
+custom_minimum_size = Vector2(68, 68)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card0/Margin/VBox" unique_id=684721235]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Weapon"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="DescLabel" type="RichTextLabel" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card0/Margin/VBox" unique_id=1067013816]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+bbcode_enabled = true
+
+[node name="CostLabel" type="Label" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card0/Margin/VBox" unique_id=772119176]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.76, 0.12, 1)
+theme_override_font_sizes/font_size = 24
+text = "15 GOLD"
+horizontal_alignment = 1
+
+[node name="BuyButton" type="Button" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card0/Margin/VBox" unique_id=1935162208]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "BUY"
+
+[node name="LockButton" type="Button" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card0/Margin/VBox" unique_id=1124123209]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "LOCK"
+
+[node name="Card1" type="PanelContainer" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer" unique_id=935711495]
+custom_minimum_size = Vector2(212, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Margin" type="MarginContainer" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card1" unique_id=1331904195]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBox" type="VBoxContainer" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card1/Margin" unique_id=180075486]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TierBadge" type="Label" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card1/Margin/VBox" unique_id=1707286497]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "[ COMMON ]"
+horizontal_alignment = 1
+
+[node name="IconRect" type="TextureRect" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card1/Margin/VBox" unique_id=2145194984]
+texture_filter = 1
+custom_minimum_size = Vector2(68, 68)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card1/Margin/VBox" unique_id=1030665683]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Weapon"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="DescLabel" type="RichTextLabel" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card1/Margin/VBox" unique_id=1177551237]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+bbcode_enabled = true
+
+[node name="CostLabel" type="Label" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card1/Margin/VBox" unique_id=1829242633]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.76, 0.12, 1)
+theme_override_font_sizes/font_size = 24
+text = "15 GOLD"
+horizontal_alignment = 1
+
+[node name="BuyButton" type="Button" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card1/Margin/VBox" unique_id=274947889]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "BUY"
+
+[node name="LockButton" type="Button" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card1/Margin/VBox" unique_id=1622886127]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "LOCK"
+
+[node name="Card2" type="PanelContainer" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer" unique_id=1772300954]
+custom_minimum_size = Vector2(212, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Margin" type="MarginContainer" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card2" unique_id=1542709194]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBox" type="VBoxContainer" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card2/Margin" unique_id=1041604951]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TierBadge" type="Label" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card2/Margin/VBox" unique_id=589042582]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "[ COMMON ]"
+horizontal_alignment = 1
+
+[node name="IconRect" type="TextureRect" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card2/Margin/VBox" unique_id=1783789699]
+texture_filter = 1
+custom_minimum_size = Vector2(68, 68)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card2/Margin/VBox" unique_id=2006251653]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Weapon"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="DescLabel" type="RichTextLabel" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card2/Margin/VBox" unique_id=259247736]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+bbcode_enabled = true
+
+[node name="CostLabel" type="Label" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card2/Margin/VBox" unique_id=1635458588]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.76, 0.12, 1)
+theme_override_font_sizes/font_size = 24
+text = "15 GOLD"
+horizontal_alignment = 1
+
+[node name="BuyButton" type="Button" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card2/Margin/VBox" unique_id=132108605]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "BUY"
+
+[node name="LockButton" type="Button" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card2/Margin/VBox" unique_id=1292075154]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "LOCK"
+
+[node name="Card3" type="PanelContainer" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer" unique_id=1906600706]
+custom_minimum_size = Vector2(212, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Margin" type="MarginContainer" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card3" unique_id=2126172156]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBox" type="VBoxContainer" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card3/Margin" unique_id=292669120]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TierBadge" type="Label" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card3/Margin/VBox" unique_id=1492686279]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "[ COMMON ]"
+horizontal_alignment = 1
+
+[node name="IconRect" type="TextureRect" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card3/Margin/VBox" unique_id=372276346]
+texture_filter = 1
+custom_minimum_size = Vector2(68, 68)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card3/Margin/VBox" unique_id=734433415]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Weapon"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="DescLabel" type="RichTextLabel" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card3/Margin/VBox" unique_id=591761080]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+bbcode_enabled = true
+
+[node name="CostLabel" type="Label" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card3/Margin/VBox" unique_id=1115919497]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.76, 0.12, 1)
+theme_override_font_sizes/font_size = 24
+text = "15 GOLD"
+horizontal_alignment = 1
+
+[node name="BuyButton" type="Button" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card3/Margin/VBox" unique_id=347370430]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "BUY"
+
+[node name="LockButton" type="Button" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/CardContainer/Card3/Margin/VBox" unique_id=964783361]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "LOCK"
+
+[node name="ActionBar" type="HBoxContainer" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox" unique_id=1678334489]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_constants/separation = 36
+alignment = 1
+
+[node name="ShopSaveQuitButton" type="Button" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/ActionBar" unique_id=1348134632]
+custom_minimum_size = Vector2(200, 58)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "SAVE & RETURN"
+
+[node name="MyWeaponsButton" type="Button" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/ActionBar" unique_id=1348134633]
+custom_minimum_size = Vector2(230, 58)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "MY WEAPONS (1/3)"
+
+[node name="RerollButton" type="Button" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/ActionBar" unique_id=1282572794]
+custom_minimum_size = Vector2(240, 58)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "REROLL (5 G)"
+
+[node name="NextWaveButton" type="Button" parent="Root/Margin/ShopMainView/ContentHBox/CenterVBox/ActionBar" unique_id=1537746005]
+custom_minimum_size = Vector2(280, 58)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "START NEXT WAVE >>"
+
+[node name="MyWeaponsView" type="VBoxContainer" parent="Root/Margin" unique_id=852873238]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="WeaponsTopBar" type="HBoxContainer" parent="Root/Margin/MyWeaponsView" unique_id=191593068]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="WeaponsTitle" type="Label" parent="Root/Margin/MyWeaponsView/WeaponsTopBar" unique_id=981685992]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 46
+text = "[ MY WEAPONS & LOADOUT (1 / 3 SLOTS) ]"
+
+[node name="WeaponsGoldLabel" type="Label" parent="Root/Margin/MyWeaponsView/WeaponsTopBar" unique_id=1536455757]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_font_sizes/font_size = 42
+text = "GOLD: 40"
+
+[node name="WeaponsBackButton" type="Button" parent="Root/Margin/MyWeaponsView/WeaponsTopBar" unique_id=2076455133]
+custom_minimum_size = Vector2(240, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "<< BACK TO SHOP"
+
+[node name="WeaponsGrid" type="GridContainer" parent="Root/Margin/MyWeaponsView" unique_id=1666631970]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 14
+columns = 3
+
+[node name="Slot0" type="PanelContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid" unique_id=2107540137]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Margin" type="MarginContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot0" unique_id=1804331742]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot0/Margin" unique_id=2067811647]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderHBox" type="HBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot0/Margin/VBox" unique_id=865934164]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="IconRect" type="TextureRect" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot0/Margin/VBox/HeaderHBox" unique_id=1114314011]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InfoVBox" type="VBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot0/Margin/VBox/HeaderHBox" unique_id=1007861461]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="NameLabel" type="Label" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot0/Margin/VBox/HeaderHBox/InfoVBox" unique_id=585775583]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Kinetic Pistol"
+
+[node name="TierBadge" type="Label" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot0/Margin/VBox/HeaderHBox/InfoVBox" unique_id=1887419403]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "[ COMMON ]"
+
+[node name="CategoryLabel" type="Label" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot0/Margin/VBox/HeaderHBox/InfoVBox" unique_id=647553070]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.85, 1)
+theme_override_font_sizes/font_size = 18
+text = "KINETIC"
+
+[node name="StatsLabel" type="RichTextLabel" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot0/Margin/VBox" unique_id=580952558]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+bbcode_enabled = true
+
+[node name="BottomHBox" type="HBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot0/Margin/VBox" unique_id=844462162]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SellButton" type="Button" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot0/Margin/VBox/BottomHBox" unique_id=1789466876]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "SELL (+14 G)"
+
+[node name="UnlockButton" type="Button" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot0/Margin/VBox/BottomHBox" unique_id=1219909848]
+visible = false
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "UNLOCK"
+
+[node name="Slot1" type="PanelContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid" unique_id=1380919952]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Margin" type="MarginContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot1" unique_id=778529795]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot1/Margin" unique_id=360387707]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderHBox" type="HBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot1/Margin/VBox" unique_id=985872947]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="IconRect" type="TextureRect" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot1/Margin/VBox/HeaderHBox" unique_id=2137203064]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InfoVBox" type="VBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot1/Margin/VBox/HeaderHBox" unique_id=414456288]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="NameLabel" type="Label" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot1/Margin/VBox/HeaderHBox/InfoVBox" unique_id=1137765243]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Slot 1"
+
+[node name="TierBadge" type="Label" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot1/Margin/VBox/HeaderHBox/InfoVBox" unique_id=993280483]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "[ EMPTY ]"
+
+[node name="CategoryLabel" type="Label" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot1/Margin/VBox/HeaderHBox/InfoVBox" unique_id=83923274]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.85, 1)
+theme_override_font_sizes/font_size = 18
+
+[node name="StatsLabel" type="RichTextLabel" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot1/Margin/VBox" unique_id=44635379]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+bbcode_enabled = true
+
+[node name="BottomHBox" type="HBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot1/Margin/VBox" unique_id=1189362629]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SellButton" type="Button" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot1/Margin/VBox/BottomHBox" unique_id=70972266]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "SELL"
+
+[node name="UnlockButton" type="Button" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot1/Margin/VBox/BottomHBox" unique_id=1214593555]
+visible = false
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "UNLOCK"
+
+[node name="Slot2" type="PanelContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid" unique_id=1323531879]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Margin" type="MarginContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot2" unique_id=1847736579]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot2/Margin" unique_id=1199339086]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderHBox" type="HBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot2/Margin/VBox" unique_id=2115716894]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="IconRect" type="TextureRect" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot2/Margin/VBox/HeaderHBox" unique_id=1625534868]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InfoVBox" type="VBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot2/Margin/VBox/HeaderHBox" unique_id=1142815750]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="NameLabel" type="Label" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot2/Margin/VBox/HeaderHBox/InfoVBox" unique_id=676259814]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Slot 2"
+
+[node name="TierBadge" type="Label" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot2/Margin/VBox/HeaderHBox/InfoVBox" unique_id=1198401024]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "[ EMPTY ]"
+
+[node name="CategoryLabel" type="Label" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot2/Margin/VBox/HeaderHBox/InfoVBox" unique_id=2120589627]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.85, 1)
+theme_override_font_sizes/font_size = 18
+
+[node name="StatsLabel" type="RichTextLabel" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot2/Margin/VBox" unique_id=777079493]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+bbcode_enabled = true
+
+[node name="BottomHBox" type="HBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot2/Margin/VBox" unique_id=762765492]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SellButton" type="Button" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot2/Margin/VBox/BottomHBox" unique_id=385284618]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "SELL"
+
+[node name="UnlockButton" type="Button" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot2/Margin/VBox/BottomHBox" unique_id=2086625132]
+visible = false
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "UNLOCK"
+
+[node name="Slot3" type="PanelContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid" unique_id=968821937]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Margin" type="MarginContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot3" unique_id=371618556]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot3/Margin" unique_id=1058935909]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderHBox" type="HBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot3/Margin/VBox" unique_id=280097022]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="IconRect" type="TextureRect" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot3/Margin/VBox/HeaderHBox" unique_id=129148611]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InfoVBox" type="VBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot3/Margin/VBox/HeaderHBox" unique_id=2075858604]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="NameLabel" type="Label" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot3/Margin/VBox/HeaderHBox/InfoVBox" unique_id=1853211584]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Slot 3"
+
+[node name="TierBadge" type="Label" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot3/Margin/VBox/HeaderHBox/InfoVBox" unique_id=257057046]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "[ LOCKED ]"
+
+[node name="CategoryLabel" type="Label" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot3/Margin/VBox/HeaderHBox/InfoVBox" unique_id=1087460788]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.85, 1)
+theme_override_font_sizes/font_size = 18
+
+[node name="StatsLabel" type="RichTextLabel" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot3/Margin/VBox" unique_id=158018840]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+bbcode_enabled = true
+
+[node name="BottomHBox" type="HBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot3/Margin/VBox" unique_id=1097613]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SellButton" type="Button" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot3/Margin/VBox/BottomHBox" unique_id=181813985]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "SELL"
+
+[node name="UnlockButton" type="Button" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot3/Margin/VBox/BottomHBox" unique_id=937425130]
+visible = false
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "UNLOCK"
+
+[node name="Slot4" type="PanelContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid" unique_id=341348346]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Margin" type="MarginContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot4" unique_id=607429973]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot4/Margin" unique_id=737573719]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderHBox" type="HBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot4/Margin/VBox" unique_id=1105525065]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="IconRect" type="TextureRect" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot4/Margin/VBox/HeaderHBox" unique_id=1527306718]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InfoVBox" type="VBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot4/Margin/VBox/HeaderHBox" unique_id=2116355876]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="NameLabel" type="Label" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot4/Margin/VBox/HeaderHBox/InfoVBox" unique_id=696414680]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Slot 4"
+
+[node name="TierBadge" type="Label" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot4/Margin/VBox/HeaderHBox/InfoVBox" unique_id=1617670136]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "[ LOCKED ]"
+
+[node name="CategoryLabel" type="Label" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot4/Margin/VBox/HeaderHBox/InfoVBox" unique_id=129738608]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.85, 1)
+theme_override_font_sizes/font_size = 18
+
+[node name="StatsLabel" type="RichTextLabel" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot4/Margin/VBox" unique_id=523419902]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+bbcode_enabled = true
+
+[node name="BottomHBox" type="HBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot4/Margin/VBox" unique_id=712546381]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SellButton" type="Button" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot4/Margin/VBox/BottomHBox" unique_id=261070481]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "SELL"
+
+[node name="UnlockButton" type="Button" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot4/Margin/VBox/BottomHBox" unique_id=70294602]
+visible = false
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "UNLOCK"
+
+[node name="Slot5" type="PanelContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid" unique_id=120469548]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Margin" type="MarginContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot5" unique_id=1414999411]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot5/Margin" unique_id=1958338002]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderHBox" type="HBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot5/Margin/VBox" unique_id=811906920]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="IconRect" type="TextureRect" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot5/Margin/VBox/HeaderHBox" unique_id=1967806226]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InfoVBox" type="VBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot5/Margin/VBox/HeaderHBox" unique_id=577907857]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="NameLabel" type="Label" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot5/Margin/VBox/HeaderHBox/InfoVBox" unique_id=824364939]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Slot 5"
+
+[node name="TierBadge" type="Label" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot5/Margin/VBox/HeaderHBox/InfoVBox" unique_id=1583177446]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "[ LOCKED ]"
+
+[node name="CategoryLabel" type="Label" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot5/Margin/VBox/HeaderHBox/InfoVBox" unique_id=2051619692]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.85, 1)
+theme_override_font_sizes/font_size = 18
+
+[node name="StatsLabel" type="RichTextLabel" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot5/Margin/VBox" unique_id=621462942]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+bbcode_enabled = true
+
+[node name="BottomHBox" type="HBoxContainer" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot5/Margin/VBox" unique_id=717543877]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SellButton" type="Button" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot5/Margin/VBox/BottomHBox" unique_id=768298202]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "SELL"
+
+[node name="UnlockButton" type="Button" parent="Root/Margin/MyWeaponsView/WeaponsGrid/Slot5/Margin/VBox/BottomHBox" unique_id=345766900]
+visible = false
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "UNLOCK"
+
+[node name="WeaponsBottomBar" type="HBoxContainer" parent="Root/Margin/MyWeaponsView" unique_id=529164624]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="WeaponsBackBottomButton" type="Button" parent="Root/Margin/MyWeaponsView/WeaponsBottomBar" unique_id=1645928388]
+custom_minimum_size = Vector2(320, 54)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "<< BACK TO SHOP"

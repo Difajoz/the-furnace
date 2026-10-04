@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://c5xto7wecvujq"]
+
+[ext_resource type="Script" uid="uid://2r1g0h2rab42" path="res://scripts/ui/game_over_ui.gd" id="1_gameover"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.08, 0.09, 0.12, 0.98)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.95, 0.72, 0.1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="GameOverUI" type="CanvasLayer" unique_id=302142274]
+process_mode = 3
+layer = 120
+script = ExtResource("1_gameover")
+
+[node name="Root" type="Control" parent="." unique_id=1391517224]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="Root" unique_id=96915838]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.04, 0.06, 0.96)
+
+[node name="Center" type="CenterContainer" parent="Root" unique_id=2013323623]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -380.0
+offset_top = -283.0
+offset_right = 380.0
+offset_bottom = 283.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="Root/Center" unique_id=2041098560]
+custom_minimum_size = Vector2(860, 640)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Margin" type="MarginContainer" parent="Root/Center/Panel" unique_id=908985070]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="Root/Center/Panel/Margin" unique_id=1434898691]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Root/Center/Panel/Margin/VBox" unique_id=491635477]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 48
+text = "[ DEFEAT - RUN OVER ]"
+horizontal_alignment = 1
+
+[node name="StatsLabel" type="RichTextLabel" parent="Root/Center/Panel/Margin/VBox" unique_id=1923762349]
+custom_minimum_size = Vector2(780, 430)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+bbcode_enabled = true
+
+[node name="BtnBox" type="HBoxContainer" parent="Root/Center/Panel/Margin/VBox" unique_id=2047385450]
+layout_mode = 2
+theme_override_constants/separation = 28
+alignment = 1
+
+[node name="RestartButton" type="Button" parent="Root/Center/Panel/Margin/VBox/BtnBox" unique_id=917944858]
+custom_minimum_size = Vector2(300, 68)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "TRY AGAIN"
+
+[node name="MenuButton" type="Button" parent="Root/Center/Panel/Margin/VBox/BtnBox" unique_id=1002302705]
+custom_minimum_size = Vector2(300, 68)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "MAIN MENU"

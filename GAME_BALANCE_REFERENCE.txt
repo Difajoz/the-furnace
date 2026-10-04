@@ -1,0 +1,340 @@
+==============================================================================================================
+                     THE FURNACE - MASTER GAME BALANCE REFERENCE SHEET
+==============================================================================================================
+Generated for precise stat inspection, balancing, and direct tuning.
+All numbers reflect exact in-engine values from GDScript source code.
+
+>>> TESTING CHEAT KEY: Press '5' (or Numpad 5) during any run to instantly grant +200 GOLD! <<<
+==============================================================================================================
+
+--------------------------------------------------------------------------------------------------------------
+1. PLAYER BASE STATS & CORE MECHANICS
+--------------------------------------------------------------------------------------------------------------
+Core Survivability & Mobility:
+  - Max Health: 100.0 HP (Base starting and max health)
+  - Base HP Regen: 0.0 HP/sec (Regen is strictly disabled when within 200px of the furnace)
+  - Base Move Speed: 230.0 px/sec
+  - Base Armor: 0.0 (Damage reduction formula: Effective Damage = Raw Damage * (100 / (100 + armor)))
+  - Base Lifesteal: 0.0%
+  - Base Pickup Magnet: 130.0 px radius
+  - Base Luck: 0.0 (Influences shop roll tier chances and bonus coin rolls on smelt)
+  - Carrying Bag Bone Capacity: 10 bones max (Base carry cap; extra bones must be smelted or left on ground)
+
+Combat Multipliers & Starter Loadout:
+  - Damage Multiplier: 1.00x (100%)
+  - Attack Speed Multiplier: 1.00x (100%)
+  - Base Critical Strike Chance: 5.0% (0.05)
+  - Base Critical Damage Multiplier: 1.50x
+  - Starting Weapon Slots: 3 slots (Expandable in shop to 4, 5, and 6 slots)
+  - Starter Weapon: Kinetic Pistol (Automatically equipped at start of every run/tutorial)
+  - Starter Ability: Dash (Automatically equipped)
+  - Starting Gold: 40 Gold
+
+Water Cannon Cooling System (Anti-Meltdown & Hydro Crowd Control):
+  - Max Water Capacity: 50.0 (Rebalanced: reduced by 50% from 100.0)
+  - Water Refill Rate: 6.0/sec (Rebalanced: reduced by 50% from 12.0/sec, ~8.3s for 0-100% refill)
+  - Water Consumption Rate: 20.0/sec (Spraying continuously drains the full 50.0 tank in 2.50s)
+  - Base Cooling Power: 20.0 deg/sec temperature reduction
+  - Base Water Stream Reach: 360.0 px
+  - Furnace Cooling Proximity Requirement: Player must be <= 175.0 px from furnace center AND aim cone dot > 0.45
+  - Hydro Combat Slow: Water stream hits enemies for 10.0 dmg/sec tick and slows their movement by 40%
+
+Dash Ability Physics:
+  - Base Dash Cooldown: 1.20s (Modified by dash_cooldown_mult)
+  - Dash Invulnerability Duration: 0.22s (Full damage & status immunity during dash)
+  - Dash Burst Velocity: 600.0 px/sec
+  - Effective Dash Travel Distance: ~132.0 px
+
+Combo Streak System:
+  - Combo Timeout Window: 4.50s after each kill to maintain the streak
+  - Multiplier Scaling: Multiplier = min(2.50x, 1.00x + (combo_count * 0.05))
+  - Combo Multiplier applies to: Score points, Smelting Gold payouts, and XP gain
+  - Getting hit immediately breaks active combo and resets multiplier to 1.00x
+
+--------------------------------------------------------------------------------------------------------------
+2. RUN DIFFICULTY MODIFIERS (LOCKED PER RUN)
+--------------------------------------------------------------------------------------------------------------
+Difficulty | Enemy HP   | Contact DMG  | Mob Density  | Boss HP    | Furnace Heat   | Gold Reward 
+--------------------------------------------------------------------------------------------------------------
+EASY       | 0.70x (-30%) | 0.75x (-25%) | 0.80x (-20%) | 0.80x (-20%) | 0.85x (-15%)   | 1.15x (+15%)
+NORMAL     | 1.00x (Base) | 1.00x (Base) | 1.00x (Base) | 1.00x (Base) | 1.00x (Base)   | 1.00x (Base)
+HARD       | 1.35x (+35%) | 1.30x (+30%) | 1.30x (+30%) | 1.25x (+25%) | 1.20x (+20%)   | 0.90x (-10%)
+
+--------------------------------------------------------------------------------------------------------------
+3. WEAPONS CATALOG - ALL 47 WEAPONS (PRECISE SPECS)
+--------------------------------------------------------------------------------------------------------------
+Name                     | ID                     | Tier      | Cost  | Dmg   | RoF   | DPS    | Rng   | Spd   | Prc | Proj | Crit      | Special / Drawback
+--------------------------------------------------------------------------------------------------------------
+Kinetic Pistol           | pistol                 | Common    | 15    | 11.0  | 2.0   | 22.0   | 450   | 650   | 1   | 1    | 5%/1.5x   | none (Balanced sidearm)
+Rapid SMG                | smg                    | Common    | 22    | 5.5   | 6.0   | 33.0   | 360   | 700   | 1   | 1    | 3%/1.5x   | none (Rapid fire spray\n+Spread)
+Scatter Shotgun          | shotgun                | Rare      | 35    | 6.5   | 1.0   | 32.5   | 320   | 600   | 1   | 5    | 8%/1.6x   | none (5-pellet spread\nShort range)
+Combat Rifle             | assault_rifle          | Rare      | 40    | 13.0  | 2.8   | 36.4   | 520   | 800   | 2   | 1    | 10%/1.8x  | none (High velocity burst\n-5% Speed)
+Heavy Anti-Material      | sniper                 | Epic      | 65    | 48.0  | 0.65  | 31.2   | 750   | 1200  | 5   | 1    | 25%/2.2x  | none (Heavy pierce & crit\n-8% Speed)
+Vulcan Minigun           | gatling_minigun        | Epic      | 68    | 4.5   | 12.0  | 54.0   | 420   | 850   | 1   | 1    | 4%/1.5x   | minigun (12 shots/s bullet hose\n-12% Speed)
+Napalm Spewer            | flamethrower           | Rare      | 45    | 2.5   | 4.0   | 10.0   | 260   | 380   | 99  | 1    | 4%/1.4x   | burn (Flame stream (3 dmg/1.5s burn)\n+15% Heat)
+Devastator RPG           | rocket_launcher        | Epic      | 60    | 38.0  | 0.7   | 26.6   | 580   | 450   | 1   | 1    | 10%/1.8x  | explosive (Explosive rocket AoE\n-10 HP)
+Plasma Blaster           | plasma_blaster         | Epic      | 55    | 22.0  | 1.6   | 35.2   | 500   | 550   | 2   | 1    | 12%/1.8x  | plasma (Bouncing plasma orb\n-5% Atk Spd)
+Vortex Cannon            | void_black_hole_cannon | Legendary | 85    | 42.0  | 0.5   | 21.0   | 550   | 340   | 1   | 1    | 15%/2.0x  | void_vortex (Graviton vortex AoE\n-15 HP)
+Lightning Rod            | tesla_coil             | Epic      | 65    | 15.0  | 2.0   | 30.0   | 420   | 9999  | 4   | 1    | 10%/1.7x  | lightning (Chain lightning (4 targets))
+Bone Crossbow            | bone_crossbow          | Rare      | 42    | 16.0  | 1.6   | 25.6   | 550   | 750   | 2   | 1    | 10%/1.8x  | bone_scaling (+1.5% Dmg per held bone)
+Bone Boomerang           | bone_boomerang         | Rare      | 46    | 14.0  | 1.8   | 25.2   | 440   | 500   | 99  | 1    | 10%/1.7x  | bone_boomerang (Piercing return sickle\n-5% Speed)
+Blade Shuriken           | shuriken_spinner       | Common    | 28    | 6.5   | 2.6   | 50.7   | 400   | 620   | 2   | 3    | 8%/1.6x   | shuriken (3 ricochet stars\n-1 Armor)
+Flame Revolver           | flame_revolver         | Rare      | 48    | 18.0  | 1.6   | 28.8   | 480   | 850   | 2   | 1    | 18%/2.0x  | burn (High crit incendiary (3 dmg/1.5s burn)\n-10 Water)
+Spirit Wand              | arcane_missiles        | Rare      | 48    | 7.5   | 2.0   | 45.0   | 460   | 550   | 1   | 3    | 8%/1.6x   | arcane_homing (3 homing spirit darts)
+Laser Blaster            | laser_cannon           | Legendary | 90    | 5.95  | 7.0   | 41.6   | 600   | 9999  | 99  | 1    | 12%/1.8x  | laser (Continuous beam\n-12% Speed)
+War Hammer               | sledgehammer           | Rare      | 50    | 34.0  | 0.85  | 28.9   | 140   | 0     | 99  | 1    | 15%/2.0x  | melee_swing (Heavy smash knockback\n-10% Atk Spd)
+Frost Scythe             | frost_scythe           | Epic      | 65    | 28.0  | 1.2   | 33.6   | 170   | 400   | 99  | 1    | 14%/1.8x  | frost_slash (220 frost cleave slow\n-15 HP)
+Cryo Cannon              | cryo_blaster           | Rare      | 52    | 6.5   | 3.8   | 24.7   | 300   | 450   | 99  | 1    | 6%/1.5x   | freeze (Freezing cone slow)
+Acid Mortar              | acid_mortar            | Epic      | 62    | 22.0  | 0.85  | 18.7   | 520   | 400   | 1   | 1    | 10%/1.7x  | acid_pool (Acid pool mortar\n-6% Speed)
+Greatsword               | greatsword             | Rare      | 45    | 26.0  | 1.3   | 33.8   | 160   | 400   | 99  | 1    | 10%/1.8x  | slash (180 cleave slash\n-6% Speed)
+Shadow Dagger            | dagger                 | Common    | 25    | 9.0   | 4.0   | 36.0   | 130   | 550   | 2   | 1    | 30%/2.0x  | slash (Fast thrusts, +30% Crit)
+Pyromancer Wand          | fire_spell             | Epic      | 65    | 22.0  | 1.5   | 33.0   | 480   | 520   | 3   | 1    | 12%/1.8x  | fire_spell (Fire wave burn (3 dmg/1.5s)\n+10% Heat)
+Meteor Staff             | meteor_staff           | Legendary | 95    | 55.0  | 0.65  | 35.8   | 650   | 480   | 1   | 1    | 20%/2.2x  | meteor (Meteor strike AoE\n-10% Speed)
+Frostbite Wand           | ice_spell              | Epic      | 62    | 18.0  | 1.8   | 32.4   | 520   | 620   | 3   | 1    | 10%/1.7x  | ice_spell (Ice lance freeze\n-5% Atk Spd)
+Stormcaller Rod          | lightning_spell        | Epic      | 68    | 20.0  | 1.5   | 30.0   | 460   | 700   | 4   | 1    | 12%/1.8x  | lightning_spell (Chain lightning wave\n-10 HP)
+Blight Venom Orb         | poison_spell           | Rare      | 46    | 14.0  | 2.0   | 56.0   | 440   | 480   | 2   | 2    | 8%/1.5x   | poison_spell (Spore cloud poison\n-0.5 HP/s)
+Cooling Mortar           | holy_sprinkler         | Legendary | 85    | 24.0  | 1.2   | 57.6   | 580   | 500   | 2   | 2    | 12%/1.8x  | furnace_cooling_shot (Water blast, cools furnace)
+Magma Shotgun            | magma_shotgun          | Epic      | 62    | 9.0   | 1.0   | 45.0   | 340   | 580   | 2   | 5    | 10%/1.7x  | magma (5-slug incendiary spread (3 dmg/1.5s)\n-5% Speed)
+Glacier Rifle            | glacier_rifle          | Epic      | 65    | 30.0  | 1.2   | 36.0   | 580   | 750   | 3   | 1    | 14%/1.8x  | freeze (Freezing ice lance\n[color=#33ccff]Freezes on hit\n-8% Atk Spd)
+Twin Dragon              | twin_dragon            | Epic      | 60    | 14.0  | 2.5   | 70.0   | 480   | 720   | 2   | 2    | 10%/1.7x  | twin_plasma (Dual fire & lightning bolts\n[color=#ffff55]Dual trajectory)
+Bouncing Magnum          | ricochet_revolver      | Rare      | 48    | 24.0  | 1.6   | 38.4   | 600   | 820   | 2   | 1    | 16%/2.0x  | ricochet (High-impact ricochet rounds\n[color=#ffcc33]Bounces 3x off walls)
+Toxic Needler            | toxic_needle           | Rare      | 44    | 8.0   | 4.5   | 36.0   | 420   | 750   | 1   | 1    | 6%/1.5x   | toxic (Rapid venom darts\n[color=#55ff55]Poisons & creates acid)
+Sawblade Cannon          | saw_launcher           | Epic      | 64    | 25.0  | 1.3   | 32.5   | 650   | 620   | 6   | 1    | 12%/1.8x  | sawblade (Hurls bouncing razor saws\n[color=#cccccc]Bounces 4x & cuts 6x)
+Cluster Mortar           | cluster_mortar         | Legendary | 88    | 40.0  | 0.8   | 32.0   | 560   | 440   | 1   | 1    | 15%/2.0x  | cluster_bomb (Splits into 4 bomblets\n[color=#ff3333]Cluster AoE\n-10% Speed)
+Chrono Blaster           | chrono_blaster         | Rare      | 46    | 12.0  | 2.2   | 26.4   | 440   | 600   | 2   | 1    | 8%/1.5x   | temporal_slow (Time-warp temporal pulses\n[color=#aaccff]Slows enemies by 75%)
+Arcane Prism Staff       | arcane_splitter        | Legendary | 92    | 18.0  | 1.4   | 25.2   | 520   | 550   | 1   | 1    | 15%/1.9x  | split_arcane (Orb divides into 3 homing darts\n[color=#cc44ff]Split trajectory)
+Thunderbolt Bow          | thunder_bow            | Epic      | 64    | 20.0  | 1.6   | 32.0   | 540   | 800   | 2   | 1    | 12%/1.8x  | lightning (Chain lightning arrows\n[color=#ffff33]Electrocutes horde)
+Volcano Repeater         | inferno_repeater       | Rare      | 50    | 11.0  | 3.0   | 99.0   | 480   | 750   | 2   | 3    | 10%/1.6x  | burn (Rapid 3-round fire burst (3 dmg/1.5s burn)\n[color=#ff6622]Ignites & burns horde)
+Thermal Disrupter        | frostfire_cannon       | Epic      | 66    | 18.0  | 1.6   | 57.6   | 500   | 680   | 2   | 2    | 12%/1.8x  | twin_plasma (Dual frost & flame orbs\n[color=#33ddff]Freezes & [color=#ff5522]Burns targets)
+Aether Railgun           | arcane_railgun         | Legendary | 96    | 55.0  | 0.6   | 33.0   | 850   | 1400  | 99  | 1    | 22%/2.3x  | split_arcane (Infinite pierce beam lance\n[color=#dd44ff]Pierces everything in line)
+Flak Cannon              | cluster_flak_cannon    | Epic      | 72    | 9.0   | 0.9   | 48.6   | 360   | 550   | 1   | 6    | 10%/1.7x  | explosive (6-pellet explosive blast\n[color=#ff4433]Close-range AoE)
+Storm Bolter             | chain_bolter           | Rare      | 54    | 14.0  | 2.5   | 35.0   | 460   | 780   | 2   | 1    | 10%/1.6x  | lightning (Heavy electric bolts\n[color=#ffff55]Arcs lightning to 3 enemies)
+Graviton Pulser          | gravity_imploder       | Epic      | 68    | 28.0  | 1.0   | 28.0   | 520   | 460   | 1   | 1    | 12%/1.9x  | void_vortex (Sucks enemies into vortex\n[color=#aa44ff]AoE implosion)
+Dragon's Breath          | dragon_breath          | Legendary | 94    | 26.0  | 1.1   | 85.8   | 420   | 720   | 2   | 3    | 18%/2.0x  | magma (Incendiary magnum spread (3 dmg/1.5s burn)\n[color=#ffaa00]Flame damage & knockback)
+Orbital Barrage          | mortar_strike          | Legendary | 85    | 28.0  | 0.75  | 126.0  | 620   | 460   | 1   | 6    | 16%/2.0x  | explosive (6-rocket artillery barrage\n[color=#ff4433]Massive explosive AoE)
+
+--------------------------------------------------------------------------------------------------------------
+4. TURRETS & FIELD DEFENSES (PRECISE SPECS)
+--------------------------------------------------------------------------------------------------------------
+Deployed via [T] Hotkey outside furnace exclusion zone (135px). Permanent physical barriers.
+
+1. BALLISTA TURRET (id: turret_ballista)
+   - Shop Cost: 65 Gold (Tier: Legendary)
+   - Visual Model: Steel/brass turntable base + Ballista head with dynamic string recoil
+   - Base Damage: 28.0 per bolt
+   - Fire Rate: 1.15 attacks/sec (Fire interval: ~0.87s)
+   - Single-Target DPS: 32.2 DPS
+   - Maximum Piercing DPS: 128.8 DPS (pierces up to 4 enemies in a line)
+   - Detection Range: 380.0 px
+   - Projectile Speed: 780.0 px/sec
+   - Pierce Count: 4 enemies
+   - Collision Radius: 18.0 px circular body (physically blocks incoming monsters)
+
+2. HEAVY CANNON TURRET (id: turret_cannon)
+   - Shop Cost: 85 Gold (Tier: Legendary)
+   - Visual Model: Dark iron fortress base + Heavy artillery barrel with smoke recoil
+   - Base Damage: 55.0 per shell
+   - Fire Rate: 0.45 attacks/sec (Interval: 2.20s reload time)
+   - Base Single-Target DPS: 25.0 DPS
+   - AoE Blast Radius: 105.0 px (Deals full 55.0 damage to all monsters in blast)
+   - Knockback Force: 280.0 px/sec impulse
+   - Detection Range: 290.0 px
+   - Projectile Speed: 460.0 px/sec
+   - Collision Radius: 18.0 px circular body
+
+3. FLAME TURRET (id: turret_flame)
+   - Shop Cost: 75 Gold (Tier: Epic)
+   - Visual Model: Vivid Orange turntable base + Dual orange flame nozzles with recoil
+   - Base Damage: 3.2 per flame puff
+   - Fire Rate: 8.33 attacks/sec (Interval: 0.12s continuous fire spray)
+   - Continuous Direct DPS: ~26.6 DPS (Balanced against other turrets)
+   - Status Burn Effect: Applies 3.0 dmg/sec burn DoT for 1.5s on hit
+   - Detection Range: 190.0 px (Shorter range flamethrower cone)
+   - Projectile Speed: 420.0 px/sec
+   - Pierce Count: 99 (Streams continuous flame through all monsters)
+   - Collision Radius: 18.0 px circular body
+
+4. ICE TURRET (id: turret_ice)
+   - Shop Cost: 70 Gold (Tier: Epic)
+   - Visual Model: Arctic Blue crystalline base + Cyan cryo-barrel with glowing tip
+   - Base Damage: 6.0 per frost crystal bolt (Primary utility is freezing, not damage)
+   - Fire Rate: 0.40 attacks/sec (Interval: 2.50s reload time)
+   - Status Freeze Effect: Freezes hit enemy completely solid for 5.0 seconds
+     * Frozen monsters have velocity = 0, deal 0 contact damage, cannot leap/charge/spit
+   - Detection Range: 280.0 px
+   - Projectile Speed: 620.0 px/sec
+   - Pierce Count: 1 (Single-target high-priority lockdown)
+   - Collision Radius: 18.0 px circular body
+   - Fire & Ice Interaction:
+     * Fire on Frozen Target: Melting occurs instantly! Ice shatters and unfreezes target, canceling out burn for that shot.
+     * Ice on Burning Target: Freezes target solid while extinguishing active flames.
+     * Poison / Acid: Operates independently and does not interfere with fire or ice.
+
+--------------------------------------------------------------------------------------------------------------
+5. SHOP PASSIVE SKILLS & PLAYER ITEMS (PRECISE SPECS)
+--------------------------------------------------------------------------------------------------------------
+Item Name              | ID                   | Tier      | Cost  | Stat                 | Value      | Secondary Stat & Drawback
+--------------------------------------------------------------------------------------------------------------
+Hollow Point           | raw_damage           | Common    | 18    | damage_mult          | +13%       | +13% Dmg
+Hair Trigger           | rapid_fire           | Common    | 20    | attack_speed_mult    | +13%       | +13% Atk Spd
+Precision Optics       | critical_eye         | Rare      | 28    | crit_chance          | +8%        | Stat2: crit_mult (+26%)
+Greaves                | titan_boots          | Common    | 16    | move_speed_mult      | +11%       | +11% Speed
+Ceramic Armor          | reinforced_plate     | Rare      | 25    | armor                | +3.0       | +3 Armor
+Leech Catalyst         | vampiric_edge        | Epic      | 38    | lifesteal            | +0.033     | +3.3% Lifesteal
+Resonator              | magneto_core         | Common    | 15    | pickup_radius_mult   | +33%       | +33% Magnet
+Adrenaline Tank        | vitality_surge       | Common    | 20    | max_hp               | +16.0      | +16 HP
+Nano Rebuilder         | nanite_repair        | Rare      | 30    | hp_regen             | +0.8       | +0.8 HP/s
+Lucky Charm            | clover_charm         | Rare      | 24    | luck                 | +0.2       | +20% Luck
+Hauler Pack            | bone_satchel_expand  | Common    | 20    | max_bones_held       | +5         | +5 Bone Cap
+Water Tank             | water_backpack       | Common    | 18    | max_water            | +33.0      | Stat2: spray_range_mult (+20%)
+Super Coolant          | super_coolant        | Rare      | 28    | cooling_efficiency   | +33%       | +33% Cooling Power
+Hydro Pump             | hydro_pump           | Rare      | 24    | water_regen_rate     | +10%       | +10% Water Regen
+Cryo Reservoir         | cryo_reservoir       | Epic      | 36    | max_water            | +30.0      | Stat2: water_regen_rate (+15%)
+Heat Resonator         | frenzy_catalyst      | Epic      | 42    | heat_frenzy_bonus    | +65%       | +65% Dmg in Critical Heat
+Thruster Overclock     | dash_booster         | Rare      | 24    | dash_cooldown_mult   | -30%       | -30% Dash Cooldown Delay
+
+--------------------------------------------------------------------------------------------------------------
+6. SHOP FURNACE UPGRADES (PRECISE SPECS)
+--------------------------------------------------------------------------------------------------------------
+Upgrade Name           | ID                     | Cost  | Primary Stat                 | Value    | Effects & Secondary Stats
+--------------------------------------------------------------------------------------------------------------
+Bone Hopper I          | bone_hopper_1          | 20    | max_bone_capacity            | +26      | +26 Bone Cap, +33% Feed
+Bone Hopper II         | bone_hopper_2          | 45    | max_bone_capacity            | +52      | +52 Bone Cap, +65% Feed\n[color=#ff5555]+15% Heat[/color]
+Smelt Blades I         | turbo_smelter_1        | 25    | process_speed_mult           | +26%     | +26% Smelt Spd
+Smelt Blades II        | turbo_smelter_2        | 50    | process_speed_mult           | +52%     | +52% Smelt Spd\n[color=#ff5555]-12% Gold[/color]
+Gold Alchemy I         | golden_crucible_1      | 35    | coin_yield_mult              | +24%     | +24% Gold Yield
+Gold Alchemy II        | golden_crucible_2      | 70    | coin_yield_mult              | +46%     | +46% Gold Yield\n[color=#ff5555]+20% Heat[/color]
+Heat Baffles           | thermal_insulation     | 32    | heat_per_bone_mult           | +-26%    | -26% Heat Gen
+Boiler Core            | reinforced_core        | 48    | max_temp_bonus               | +33.0    | +33 Safe Heat\n[color=#ff5555]+12% Meltdown Spd[/color]
+Injection Ports        | water_injection_ports  | 30    | cooling_absorption_mult      | +46%     | +46% Cooling Rate
+Steam Valve            | emergency_valve        | 55    | emergency_cool_charges       | +1       | Auto-cool at 98% (1x)
+Supercharger           | greed_igniter          | 80    | critical_multiplier_bonus    | +130%    | 3.25x Gold in Critical Heat\n[color=#ff5555]+15% Meltdown Spd[/color]
+Steam Purge            | steam_blast_defense    | 38    | steam_blast_unlocked         | +1       | Steam shockwave on cooling
+Heat Exchanger         | furnace_heat_sink      | 35    | max_temp_bonus               | +25.0    | +25 Safe Heat Capacity
+
+--------------------------------------------------------------------------------------------------------------
+7. SHOP ACTIVE SKILLS & ABILITY CARDS (HOTKEYS 1, 2, 3)
+--------------------------------------------------------------------------------------------------------------
+- Overdrive Surge (id: active_damage_boost) [Tier: Rare | Cost: 32 Gold]
+  Cooldown: 20.0s  |  Duration: 10.0s  |  Effect: +100% Dmg for 10s\n[color=#ffff55][CD: 20s | Key 1/2/3][/color]
+- Aegis Barrier (id: active_shield) [Tier: Epic | Cost: 42 Gold]
+  Cooldown: 22.0s  |  Duration: 6.0s  |  Effect: Invulnerable Barrier for 6s\n[color=#ffff55][CD: 22s | Key 1/2/3][/color]
+- Cryo Shockwave (id: active_frost_nova) [Tier: Rare | Cost: 35 Gold]
+  Cooldown: 18.0s  |  Duration: 0.5s  |  Effect: Freezes all nearby monsters (5s)\n[color=#ffff55][CD: 18s | Key 1/2/3][/color]
+
+--------------------------------------------------------------------------------------------------------------
+8. LEVEL-UP UPGRADE POOL - ALL 16 PERKS (4 TIERS WITH DRAWBACKS)
+--------------------------------------------------------------------------------------------------------------
+Perk Name        | ID                 | Type     | Stat                   | Tier I   | Tier II  | Tier III | Tier IV  | Drawback (T1..T4)
+--------------------------------------------------------------------------------------------------------------
+Max HP           | max_hp             | player   | max_hp                 | +13      | +24      | +37      | +52      | damage_mult: -8%, -12%, -16%, -20%
+Damage           | damage_mult        | player   | damage_mult            | +10%     | +18%     | +29%     | +39%     | attack_speed_mult: -5%, -9%, -13%, -17%
+Atk Speed        | attack_speed       | player   | attack_speed_mult      | +10%     | +18%     | +29%     | +39%     | damage_mult: -5%, -9%, -13%, -17%
+HP Regen         | hp_regen           | player   | hp_regen               | +0.4     | +0.8     | +1.3     | +2       | armor: -1, -2, -3, -4
+Crit Chance      | crit_chance        | player   | crit_chance            | +5%      | +10%     | +17%     | +24%     | max_hp: -6, -12, -18, -25
+Crit Dmg         | crit_mult          | player   | crit_mult              | +0.26    | +0.46    | +0.72    | +1.05    | attack_speed_mult: -5%, -8%, -12%, -16%
+Armor            | armor              | player   | armor                  | +3       | +5       | +8       | +12      | move_speed_mult: -4%, -7%, -10%, -14%
+Speed            | move_speed         | player   | move_speed_mult        | +8%      | +14%     | +21%     | +29%     | max_hp: -8, -14, -20, -28
+Lifesteal        | lifesteal          | player   | lifesteal              | +2%      | +4%      | +6%      | +8%      | hp_regen: -0.2, -0.4, -0.7, -1
+Luck             | luck               | player   | luck                   | +8%      | +16%     | +24%     | +33%     | armor: -1, -2, -3, -4
+Magnet           | pickup_radius      | player   | pickup_radius_mult     | +26%     | +46%     | +72%     | +105%    | max_hp: -4, -8, -12, -16
+Cooling          | cooling_efficiency | player   | cooling_efficiency     | +20%     | +37%     | +55%     | +78%     | move_speed_mult: -4%, -7%, -10%, -14%
+Water Tank       | water_capacity     | player   | max_water              | +25      | +50      | +80      | +120     | move_speed_mult: -3%, -5%, -8%, -11%
+Hydro Pump       | water_regen        | player   | water_regen_rate       | +5%      | +8%      | +12%     | +15%     | armor: -1, -2, -3, -4
+Bone Bag         | bone_capacity      | player   | max_bones_held         | +7       | +13      | +21      | +32      | move_speed_mult: -3%, -6%, -9%, -12%
+Dash Delay       | dash_delay         | player   | dash_cooldown_mult     | +-15%    | +-25%    | +-35%    | +-45%    | move_speed_mult: -3%, -5%, -8%, -10%
+Crucible         | crucible_bones     | furnace  | max_bone_capacity      | +11      | +21      | +33      | +47      | heat_per_bone_mult: 6%, 11%, 16%, 22%
+Smelt Speed      | furnace_speed      | furnace  | process_speed_mult     | +13%     | +24%     | +37%     | +52%     | coin_yield_mult: -5%, -9%, -13%, -18%
+Gold Alchemy     | furnace_coins      | furnace  | coin_yield_mult        | +16%     | +26%     | +39%     | +55%     | heat_per_bone_mult: 8%, 14%, 20%, 28%
+Heat Buffer      | furnace_heat       | furnace  | max_temp_bonus         | +16      | +29      | +46      | +65      | heat_per_bone_mult: 5%, 9%, 14%, 19%
+
+--------------------------------------------------------------------------------------------------------------
+9. THE CRUCIBLE (CENTRAL FURNACE) DETAILED SPECS & RISK/REWARD
+--------------------------------------------------------------------------------------------------------------
+Smelting & Economy Core:
+  - Base Bone Capacity: 50 bones (Expandable to 150+ bones with shop/level-up upgrades)
+  - Base Process Rate: 0.60 seconds per single bone smelted (Interval = 0.60 / furnace_process_speed_mult)
+  - Base Coin Yield: 1.0 Gold per single bone
+  - Heat Generation: +4.50 deg per bone smelted (Heat = 4.5 * furnace_heat_per_bone_mult * difficulty_mult)
+  - Natural Heat Dissipation:
+      * While processing bones: 1.20 deg/sec natural cooling
+      * While idle (0 bones in crucible): 3.50 deg/sec accelerated natural cooling
+  - Active Water Cooling Absorption: 20.0 deg/sec * GameManager.cooling_efficiency * furnace_cooling_absorption_mult
+
+Temperature Heat Stages & Gold Multipliers:
+  - LOW STAGE       (  0.0 -  25.0 deg): 1.00x Base Gold Yield
+  - MEDIUM STAGE    ( 25.0 -  50.0 deg): 1.25x Gold Yield (+25% bonus)
+  - HIGH STAGE      ( 50.0 -  75.0 deg): 1.75x Gold Yield (+75% bonus)
+  - CRITICAL STAGE  ( 75.0 - 100.0 deg): 2.50x Gold Yield (+150% huge bonus) + Heat Frenzy weapon damage buff
+  - OVERHEAT / MELTDOWN THRESHOLD: 100.0 deg (Extended by max_temp_bonus items)
+
+Meltdown Detonation Physics (If temperature reaches 100.0 deg without cooling):
+  - Warning Phase (0.0s - 0.75s): Violent screen rumble, alarm siren, explosive spark burst
+  - Detonation Phase (0.75s):
+      * 3 Expanding Shockwaves: 480px, 360px, and 240px blast radii
+      * 60 Flying Flaming Shrapnel Chunks with randomized velocities (180 - 500 px/s)
+      * Heavy Screen Shake: 32.0 magnitude for 1.60s duration
+  - Destruction Phase (2.40s): Destroys current smelt batch, triggers catastrophic Game Over
+
+--------------------------------------------------------------------------------------------------------------
+10. MONSTERS & ENEMIES CATALOG - ALL 33 VARIANTS (PRECISE SPECS)
+--------------------------------------------------------------------------------------------------------------
+Monster Name              | Enemy Type ID              | HP     | Speed  | DMG   | KB Res | Drop | Rad   | Behavior
+--------------------------------------------------------------------------------------------------------------
+Green Slime               | SLIME                      | 20.0   | 105.0  | 10.0  | 0.00   | 1    | 28.0  | Melee Swarm
+Giant Rat                 | GIANT_RAT                  | 18.0   | 175.0  | 9.0   | 0.00   | 1    | 26.0  | Melee Swarm
+Vampiric Bat              | BAT                        | 16.0   | 195.0  | 9.0   | 0.00   | 1    | 24.0  | Melee Swarm
+Goblin Cutthroat          | GOBLIN                     | 35.0   | 125.0  | 12.0  | 0.10   | 1    | 28.0  | Melee Swarm
+Shadow Wolf               | WOLF                       | 32.0   | 180.0  | 14.0  | 0.10   | 1    | 28.0  | Melee Swarm
+Skeleton Archer           | SKELETON_ARCHER            | 36.0   | 95.0   | 11.0  | 0.10   | 1    | 28.0  | Ranged Spitter
+Wildfire Wisp             | WILDFIRE_WISP              | 30.0   | 130.0  | 13.0  | 0.05   | 1    | 26.0  | Ranged Spitter
+Frost Snowman             | EVIL_SNOWMAN               | 42.0   | 85.0   | 12.0  | 0.20   | 1    | 30.0  | Ranged Spitter
+Trasgo Rolling Imp        | TRASGO                     | 38.0   | 110.0  | 14.0  | 0.15   | 1    | 28.0  | Charge Rush
+Gnoll Marauder            | GNOLL                      | 55.0   | 110.0  | 15.0  | 0.25   | 1    | 32.0  | Melee Swarm
+Wild Orc Brawler          | WILD_ORC                   | 65.0   | 135.0  | 16.0  | 0.30   | 2    | 32.0  | Melee Swarm
+Pumpkin Horror            | PUMPKIN_HORROR             | 50.0   | 90.0   | 14.0  | 0.20   | 1    | 30.0  | Ranged Spitter
+Spore Spitter             | PREDATORY_MUSHROOM         | 45.0   | 85.0   | 10.0  | 0.15   | 1    | 30.0  | Ranged Spitter
+Demon Spider              | DEMON_SPIDER               | 44.0   | 95.0   | 16.0  | 0.20   | 1    | 32.0  | Leap Ambush
+Frenzied Werewolf         | WEREWOLF                   | 52.0   | 165.0  | 18.0  | 0.20   | 1    | 32.0  | Melee Swarm
+Crucible Mimic            | CHEST_MIMIC                | 70.0   | 125.0  | 16.0  | 0.30   | 1    | 32.0  | Furnace Thief / Mimic
+Minotaur Juggernaut       | MINOTAUR                   | 110.0  | 90.0   | 22.0  | 0.70   | 2    | 38.0  | Charge Rush
+Forest Troll              | TROLL                      | 130.0  | 80.0   | 20.0  | 0.65   | 2    | 38.0  | Melee Swarm
+Ancient Cyclops           | CYCLOPS                    | 100.0  | 80.0   | 18.0  | 0.50   | 2    | 36.0  | Ranged Spitter
+Deep One Brute            | DEEP_ONE                   | 95.0   | 90.0   | 18.0  | 0.50   | 2    | 34.0  | Melee Swarm
+Brain Slayer              | BRAIN_SLAYER               | 55.0   | 90.0   | 14.0  | 0.20   | 2    | 32.0  | Ranged Spitter
+Stone Gargoyle            | GARGOYLE                   | 140.0  | 80.0   | 22.0  | 0.85   | 2    | 36.0  | Melee Swarm
+Rat Shaman                | RAT_ROYALTY                | 80.0   | 85.0   | 10.0  | 0.30   | 2    | 32.0  | Healer Shaman Pulse
+Chaos Eye                 | CHAOS_EYE                  | 55.0   | 95.0   | 14.0  | 0.15   | 2    | 30.0  | Ranged Spitter
+Void Cultist              | RICOCHET_CULTIST           | 65.0   | 90.0   | 15.0  | 0.25   | 2    | 32.0  | Ranged Spitter
+Crypt Abomination         | BOSS_CRYPT_ABOMINATION     | 2400.0 | 82.0   | 50.0  | 0.96   | 6    | 80.0  | Ranged Spitter
+Centaur King              | BOSS_CENTAUR_KING          | 3800.0 | 98.0   | 58.0  | 0.96   | 6    | 85.0  | Multi-Phase Boss
+Ironhorn Minotaur         | BOSS_IRONHORN_MINOTAUR     | 4800.0 | 90.0   | 64.0  | 0.96   | 7    | 88.0  | Ranged Spitter
+Psionic Overlord          | BOSS_PSIONIC_OVERLORD      | 5800.0 | 88.0   | 60.0  | 0.96   | 7    | 84.0  | Ranged Spitter
+Giant Titan               | BOSS_GIANT_TITAN           | 7000.0 | 76.0   | 72.0  | 0.97   | 8    | 92.0  | Multi-Phase Boss
+Yeti Behemoth             | BOSS_YETI_BEHEMOTH         | 8200.0 | 85.0   | 76.0  | 0.97   | 8    | 92.0  | Multi-Phase Boss
+Gargoyle Sovereign        | BOSS_GARGOYLE_SOVEREIGN    | 9600.0 | 88.0   | 70.0  | 0.97   | 9    | 90.0  | Ranged Spitter
+Angel of Death            | BOSS_ANGEL_OF_DEATH        | 12500.0 | 98.0   | 85.0  | 0.98   | 10   | 90.0  | Multi-Phase Boss
+
+--------------------------------------------------------------------------------------------------------------
+11. ENEMY WAVE PROGRESSION & DYNAMIC SCALING FORMULAS
+--------------------------------------------------------------------------------------------------------------
+Every round (wave), monster attributes dynamically scale according to the following exact formulas:
+  - Standard Monster HP:     HP  = Base_HP  * (1.0 + (wave - 1) * 0.16) * Difficulty_Enemy_HP_Mult
+  - Monster Contact Damage:  DMG = Base_DMG * (1.0 + (wave - 1) * 0.07) * Difficulty_Enemy_DMG_Mult
+  - Monster Movement Speed:  SPD = Base_SPD * min(1.35, 1.0 + (wave - 1) * 0.015)
+  - Boss Monster HP:         HP  = Base_HP  * (1.0 + (wave - 1) * 0.16) * (1.0 + (wave - 1) * 0.12) * Difficulty_Boss_HP_Mult
+
+Elite & Miniboss Multipliers (Applied when an elite or miniboss spawns):
+  - Elite Monster:    HP x2.40  |  Contact DMG x1.30  |  Bone Drops +1  |  Collision Radius x1.20  |  Scale x1.15
+  - Miniboss Monster: HP x3.50  |  Contact DMG x1.50  |  Bone Drops +2  |  Collision Radius x1.35  |  Scale x1.35
+
+Major Boss Battle Schedule:
+  - Wave 3:  Crypt Abomination (First Major Boss Encounter: 2,400 Base HP, 3-Phase Slam/Spit/Shockwave)
+  - Wave 5:  Centaur King (Grand Arena Behemoth: 3,800 Base HP, Charge Rush, Stomp Wave, Summon Minions)
+  - Wave 7:  Ironhorn Minotaur (4,800 Base HP, Destructive Charge Rush, Horn Impale, Quake Shockwaves)
+  - Wave 9:  Psionic Overlord (5,800 Base HP, Mind Blast Barrage, Psychic Shield, Energy Nova)
+  - Wave 11: Giant Titan (7,000 Base HP, Earth Shaker Slam, Boulder Toss, Quake Trail)
+  - Wave 13: Yeti Behemoth (8,200 Base HP, Blizzard Roar, Freezing Icicle Barrage, Frost Slam)
+  - Wave 15: Gargoyle Sovereign (9,600 Base HP, Stone Form Immunity, Aerial Dive Bomb, Poison Spore Cloud)
+  - Wave 20: Angel of Death (Final Cataclysm: 12,500 Base HP, Death Scythe Waves, Necrotic Storm, Soul Siphon)
+==============================================================================================================
