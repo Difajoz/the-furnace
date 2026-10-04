@@ -20,8 +20,6 @@ In **The Furnace**, you stand as the last defender of an ancient, volatile core.
 
 Manage the heat: the hotter the furnace burns, the richer the payout—but let it overheat, and a devastating meltdown awaits!
 
-![The Furnace Gameplay](screenshot.png)
-
 ---
 
 ## ⚡ Key Features
